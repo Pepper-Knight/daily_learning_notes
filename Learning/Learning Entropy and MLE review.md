@@ -75,14 +75,18 @@ $$
 MLE is a method to estimate model parameters by **maximizing the likelihood** of the observed data.
 
 ### Standard MLE objective:
+
 $$
 \hat{\theta}_{\mathrm{MLE}} = \arg\max_\theta \sum_{i=1}^n \log p_\theta(x_i)
 $$
 Using the Law of Large Numbers, it becomes:
+
 $$
 \hat{\theta}_{\mathrm{MLE}} = \arg\max_\theta \, \mathbb{E}_{x \sim p_{\text{data}}} \left[ \log p_\theta(x) \right]
 $$
+
 Or equivalently:
+
 $$
 \arg\min_\theta \, \mathbb{E}_{x \sim p(x)} \left[ - \log p_\theta(x) \right]
 $$
@@ -174,6 +178,7 @@ $$
 最大似然估计是寻找参数 $\theta$，使观测数据的概率最大：
 
 ### 经典形式：
+
 $$
 \hat{\theta}_{\mathrm{MLE}} = \arg\max_\theta \sum_{i=1}^n \log p_\theta(x_i)
 $$
