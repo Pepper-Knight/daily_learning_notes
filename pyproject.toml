@@ -1,0 +1,23 @@
+[project]
+name = "daily-learning-notes"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Pepper-Knight",email = "yiyiang.chi@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy (>=2.2.4,<3.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "torch (>=2.6.0,<3.0.0)",
+    "matplotlib (>=3.10.1,<4.0.0)",
+    "ipykernel (>=6.29.5,<7.0.0)",
+    "ipython (>=9.1.0,<10.0.0)",
+    "scipy (>=1.15.2,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
