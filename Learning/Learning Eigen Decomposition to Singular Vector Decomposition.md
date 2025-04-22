@@ -45,6 +45,7 @@ Rabbits have:
 - 1 head and 4 feet  
 
 We can encode this as a transformation matrix:
+
 $$
 [
 A = \begin{bmatrix}
@@ -55,6 +56,7 @@ A = \begin{bmatrix}
 $$
 
 Now, suppose we apply this matrix to the **standard basis vectors**:
+
 $$
 [
 \vec{e}_1 = \begin{bmatrix}1\\0\end{bmatrix}, \quad
@@ -63,6 +65,7 @@ $$
 $$
 
 Then:
+
 $$
 [
 A \vec{e}_1 = \begin{bmatrix}1\\2\end{bmatrix}, \quad
@@ -107,11 +110,13 @@ This is where **SVD (Singular Value Decomposition)** comes in.
 ## 🔄 From Eigen to SVD
 
 SVD generalizes eigen decomposition. It works for **any matrix**, even non-square or non-symmetric ones.
+
 $$
 [
 A = U \Sigma V^T
 ]
 $$
+
 - \( U \): left singular vectors (eigenvectors of \( AA^T \))
 - \( V \): right singular vectors (eigenvectors of \( A^T A \))
 - $( \Sigma )$: diagonal matrix of singular values $( \sigma_i = \sqrt{\lambda_i} )$
@@ -150,6 +155,7 @@ SVD is like saying:
 The core idea behind PCA is **low-rank approximation**.
 
 Given the SVD of a data matrix:
+
 $$
 [
 X = U \Sigma V^T
@@ -159,6 +165,7 @@ $$
 Each column of $V$ represents a **principal direction** in the original feature space, and the singular values in $\Sigma$ represent how much variance (or “pulling”) that direction contributes.
 
 To compress or simplify the data, we can **keep only the top $k$ singular values and vectors**:
+
 $$
 [
 X_k = U_k \Sigma_k V_k^T
@@ -194,11 +201,13 @@ Thus:
 
 - **特征向量** 是在矩阵作用下方向不变的向量
 - **特征值** 是这个方向上的缩放因子
+
 $$
 [
 A \vec{v} = \lambda \vec{v}
 ]
 $$
+
 其中：
 - $( \vec{v} )$：特征向量  
 - $( \lambda )$：特征值  
@@ -218,6 +227,7 @@ $$
 - 兔有：1 只头、4 只脚
 
 我们可以用一个 2×2 的矩阵来表示这种映射关系：
+
 $$
 [
 A = \begin{bmatrix}
@@ -228,6 +238,7 @@ A = \begin{bmatrix}
 $$
 
 现在我们观察这个矩阵对标准向量的作用：
+
 $$
 [
 \vec{e}_1 = \begin{bmatrix}1\\0\end{bmatrix} \quad （代表一只鸡），\quad
@@ -236,6 +247,7 @@ $$
 $$
 
 矩阵作用结果为：
+
 $$
 [
 A \vec{e}_1 = \begin{bmatrix}1\\2\end{bmatrix}，\quad
@@ -305,6 +317,7 @@ $$
 - $A^T A$ 的特征向量（构成 $V$）告诉我们输入空间中的哪几个方向是稳定的“变换方向”
 - $A A^T$ 的特征向量（构成 $U$）则说明这些输入是被映射到了输出空间的哪些方向上
 - $\Sigma$ 中的奇异值就是两边空间之间变换的“缩放倍数”，本质上是 $A^T A$ 或 $A A^T$ 的特征值的开方：
+
 $$
 [
 \sigma_i = \sqrt{\lambda_i}
@@ -329,6 +342,7 @@ SVD 的思路是：
 PCA（主成分分析）的核心思想其实就是 **低秩近似（Low-Rank Approximation）**。
 
 当我们对一个数据矩阵 $X$ 做 SVD 分解：
+
 $$
 [
 X = U \Sigma V^T
@@ -340,6 +354,7 @@ $$
 - $\Sigma$ 中的奇异值表示数据在这个方向上的变化程度
 
 我们可以只保留前 $k$ 个最大的奇异值及其对应的向量：
+
 $$
 [
 X_k = U_k \Sigma_k V_k^T
