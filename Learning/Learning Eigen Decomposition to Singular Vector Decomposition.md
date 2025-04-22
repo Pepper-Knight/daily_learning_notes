@@ -53,6 +53,7 @@ A = \begin{bmatrix}
 \end{bmatrix}
 ]
 $$
+
 Now, suppose we apply this matrix to the **standard basis vectors**:
 $$
 [
@@ -60,6 +61,7 @@ $$
 \vec{e}_2 = \begin{bmatrix}0\\1\end{bmatrix}
 ]
 $$
+
 Then:
 $$
 [
@@ -67,6 +69,7 @@ A \vec{e}_1 = \begin{bmatrix}1\\2\end{bmatrix}, \quad
 A \vec{e}_2 = \begin{bmatrix}1\\4\end{bmatrix}
 ]
 $$
+
 These outputs represent how the "chicken" and "rabbit" variables get mapped to the "head/feet" space. If we now try to find **directions that only get scaled (not rotated)** under this transformation — those are the **eigenvectors**. The amount of stretch along them is the **eigenvalue**.
 
 So in this toy system:
@@ -113,12 +116,63 @@ $$
 - \( V \): right singular vectors (eigenvectors of \( A^T A \))
 - $( \Sigma )$: diagonal matrix of singular values $( \sigma_i = \sqrt{\lambda_i} )$
 
+### 🧠 Understanding the Roles of $A^T A$ and $A A^T$
+
+Let’s look at the matrix shapes:
+
+- $A^T A \in \mathbb{R}^{n \times n}$:  
+  This matrix keeps the **column space** of $A$, so it captures how **input directions** (features, variables) interact. In other words, it encodes the **feature structure** or **input space geometry**.
+
+- $A A^T \in \mathbb{R}^{m \times m}$:  
+  This matrix keeps the **row space** of $A$, which corresponds to how each data **sample (row)** projects onto others — the **output space structure**.
+
+### 🧭 Interpretation:
+
+- The eigenvectors of $A^T A$ form the matrix $V$, telling us **which directions in the input space are preserved** under transformation.
+- The eigenvectors of $A A^T$ form the matrix $U$, telling us **which directions in the output space the inputs are stretched into**.
+- The singular values $\sigma_i$ in $\Sigma$ are just the **square roots** of the eigenvalues of both $A^T A$ and $A A^T$ — they represent the **strength of stretching** between these two spaces.
+
+So we can say:
+
+> $A^T A$ describes the internal structure of the **input (feature) space**,  
+> $A A^T$ describes the internal structure of the **output (observation) space**,  
+> and $\Sigma$ links them via **scaling magnitudes**.
+
 ### 🧭 Intuition:
 
 SVD is like saying:  
 > “I can’t decompose A directly, but I can decompose how it acts on **input space** and **output space**, then connect them with scaling (Σ).”
 
 ---
+
+## 🌟 Low-Rank Approximation and PCA
+
+The core idea behind PCA is **low-rank approximation**.
+
+Given the SVD of a data matrix:
+$$
+[
+X = U \Sigma V^T
+]
+$$
+
+Each column of $V$ represents a **principal direction** in the original feature space, and the singular values in $\Sigma$ represent how much variance (or “pulling”) that direction contributes.
+
+To compress or simplify the data, we can **keep only the top $k$ singular values and vectors**:
+$$
+[
+X_k = U_k \Sigma_k V_k^T
+]
+$$
+
+
+This approximates the original data while preserving most of its structure.
+
+> Each direction (eigenvector or singular vector) can be thought of as a “pulling direction” from a variable, and its associated singular value represents how strong that variable influences the data shape.
+
+Thus:
+- Keeping only top components reveals **which variables contribute most to data variation**
+- This is used in **PCA**, **noise reduction**, and **feature importance analysis**
 
 ## ✅ Summary
 
@@ -172,6 +226,7 @@ A = \begin{bmatrix}
 \end{bmatrix}
 ]
 $$
+
 现在我们观察这个矩阵对标准向量的作用：
 $$
 [
@@ -179,6 +234,7 @@ $$
 \vec{e}_2 = \begin{bmatrix}0\\1\end{bmatrix} \quad （代表一只兔子）
 ]
 $$
+
 矩阵作用结果为：
 $$
 [
@@ -186,6 +242,7 @@ A \vec{e}_1 = \begin{bmatrix}1\\2\end{bmatrix}，\quad
 A \vec{e}_2 = \begin{bmatrix}1\\4\end{bmatrix}
 ]
 $$
+
 也就是说：  
 - 鸡和兔子在被矩阵作用后变成了“头”和“脚”的坐标系中的向量  
 - 而如果我们再找出某个方向（特征向量）被这个矩阵作用后**仍然保持方向，只是长度变化了**，这就是这个系统的**特征方向**  
@@ -233,12 +290,71 @@ $$
 - \( V \)：右奇异向量（来自 \( A^T A \) 的特征分解）
 - $( \Sigma )$：奇异值矩阵，元素为 $( \sigma_i = \sqrt{\lambda_i} )$
 
+### 🧠 如何理解 $A^T A$ 和 $A A^T$ 的角色？
+
+我们可以从矩阵形状来直观理解：
+
+- $A^T A \in \mathbb{R}^{n \times n}$：  
+  保留了原矩阵的 **列数**，也就是输入的维度。这代表了 **输入空间** 的特征结构 —— 各个变量之间是如何协同作用的。
+
+- $A A^T \in \mathbb{R}^{m \times m}$：  
+  保留了原矩阵的 **行数**，对应的是每条数据的结构（输出空间）。这个矩阵描述的是数据点在空间中如何相互投影。
+
+### 🧭 几何解释：
+
+- $A^T A$ 的特征向量（构成 $V$）告诉我们输入空间中的哪几个方向是稳定的“变换方向”
+- $A A^T$ 的特征向量（构成 $U$）则说明这些输入是被映射到了输出空间的哪些方向上
+- $\Sigma$ 中的奇异值就是两边空间之间变换的“缩放倍数”，本质上是 $A^T A$ 或 $A A^T$ 的特征值的开方：
+$$
+[
+\sigma_i = \sqrt{\lambda_i}
+]
+$$
+
+所以我们可以这么理解：
+
+> $A^T A$ 描述了**输入空间（列空间）**的结构，  
+> $A A^T$ 描述了**输出空间（行空间）**的结构，  
+> $\Sigma$ 则是连接这两个空间的“拉伸尺度”。
+
 ### 🧭 直觉理解：
 
 SVD 的思路是：
 > “我没办法直接对 A 做特征分解，但我可以分别分析它对输入空间和输出空间的影响，然后通过奇异值串联两者。”
 
 ---
+
+## 🌟 低秩近似与 PCA 的核心思想
+
+PCA（主成分分析）的核心思想其实就是 **低秩近似（Low-Rank Approximation）**。
+
+当我们对一个数据矩阵 $X$ 做 SVD 分解：
+$$
+[
+X = U \Sigma V^T
+]
+$$
+
+其中：
+- $V$ 中的每一列代表原始特征空间中的一个“主方向”
+- $\Sigma$ 中的奇异值表示数据在这个方向上的变化程度
+
+我们可以只保留前 $k$ 个最大的奇异值及其对应的向量：
+$$
+[
+X_k = U_k \Sigma_k V_k^T
+]
+$$
+
+这样就可以用低秩的方式近似原始数据，同时保留最主要的信息。
+
+> 可以将每个特征向量方向理解为“每个变量对数据施加的拉伸方向”，  
+> 对应的奇异值越大，说明这个变量在数据中起的作用越强。
+
+因此：
+- 只保留较大的奇异值等价于保留主要变量影响
+- 这也就是 PCA 能用于 **数据压缩**、**噪声去除**、**变量筛选** 的数学依据
+
 
 ## ✅ 总结
 
