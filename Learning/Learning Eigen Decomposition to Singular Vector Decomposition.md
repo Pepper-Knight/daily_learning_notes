@@ -59,8 +59,10 @@ Now, suppose we apply this matrix to the **standard basis vectors**:
 
 $$
 [
-\vec{e}_1 = \begin{bmatrix}1\\0\end{bmatrix}, \quad
-\vec{e}_2 = \begin{bmatrix}0\\1\end{bmatrix}
+\vec{e}_1 = \begin{bmatrix}1\\
+0\end{bmatrix}, \quad
+\vec{e}_2 = \begin{bmatrix}0\\
+1\end{bmatrix}
 ]
 $$
 
@@ -76,8 +78,8 @@ $$
 These outputs represent how the "chicken" and "rabbit" variables get mapped to the "head/feet" space. If we now try to find **directions that only get scaled (not rotated)** under this transformation — those are the **eigenvectors**. The amount of stretch along them is the **eigenvalue**.
 
 So in this toy system:
-- The directions \(\vec{v}\) such that \(A \vec{v} = \lambda \vec{v}\) describe the "pure identity" of animal types
-- The stretch factors \(\lambda\) describe how much those identities are magnified in feature space (heads/feet)
+- The directions $(\vec{v}) such that (A \vec{v} = \lambda \vec{v})$ describe the "pure identity" of animal types
+- The stretch factors $(\lambda)$ describe how much those identities are magnified in feature space (heads/feet)
 
 This is a simple but powerful way to view **eigenvalues as scaling**, and **eigenvectors as intrinsic directions** in a transformation.
 
