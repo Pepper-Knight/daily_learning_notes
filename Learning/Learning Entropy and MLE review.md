@@ -94,6 +94,8 @@ $$
 
 > ✅ **Interpretation**: MLE is equivalent to **minimizing cross-entropy** between the model and the data distribution.
 
+
+
 ---
 
 ## 📌 Summary Table
