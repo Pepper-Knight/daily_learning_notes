@@ -70,8 +70,10 @@ Then:
 
 $$
 [
-A \vec{e}_1 = \begin{bmatrix}1\\2\end{bmatrix}, \quad
-A \vec{e}_2 = \begin{bmatrix}1\\4\end{bmatrix}
+A \vec{e}_1 = \begin{bmatrix}1\\
+2\end{bmatrix}, \quad
+A \vec{e}_2 = \begin{bmatrix}1\\
+4\end{bmatrix}
 ]
 $$
 
@@ -243,8 +245,10 @@ $$
 
 $$
 [
-\vec{e}_1 = \begin{bmatrix}1\\0\end{bmatrix} \quad （代表一只鸡），\quad
-\vec{e}_2 = \begin{bmatrix}0\\1\end{bmatrix} \quad （代表一只兔子）
+\vec{e}_1 = \begin{bmatrix}1\\
+0\end{bmatrix} \quad （代表一只鸡），\quad
+\vec{e}_2 = \begin{bmatrix}0\\
+1\end{bmatrix} \quad （代表一只兔子）
 ]
 $$
 
