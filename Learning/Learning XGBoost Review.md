@@ -14,12 +14,10 @@ XGBoost is a residual learning model, just like most gradient boosting models. T
 At each step:
 
 $$
-[
 \hat{y}_{\text{new}} = \hat{y}_{\text{old}} + f_t(x)
 ]
 [
 \text{Residual: } r_i^{(t)} = y_i - \hat{y}_i^{(t-1)} \approx -\frac{\partial \mathcal{L}(y_i, \hat{y}_i)}{\partial \hat{y}_i}
-]
 $$
 
 This residual learning process is equivalent to performing **gradient descent** in function space, since reducing the residual also reduces the loss function.
@@ -39,9 +37,7 @@ XGBoost:
 - Uses both **gradient and hessian** to estimate gain:
 
 $$
-[
 \text{Gain} = \frac{1}{2} \left[ \frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{(G_L + G_R)^2}{H_L + H_R + \lambda} \right] - \gamma
-]
 $$
 
 This ensures each split contributes to minimizing the **global loss**, not just local variance.
@@ -55,11 +51,9 @@ Every **leaf node** in XGBoost represents a region in the feature space and outp
 This value is computed as the optimal output that minimizes the local approximation of the loss function:
 
 $$
-[
 w_j^* = -\frac{G_j}{H_j + \lambda}, \quad 
 G_j = \sum_{i \in I_j} g_i, \quad 
 H_j = \sum_{i \in I_j} h_i
-]
 $$
 
 > So each leaf acts as a parameterized piecewise constant function, enabling the model to capture **nonlinear patterns**.
@@ -84,15 +78,11 @@ XGBoost 是一种残差学习模型，和大多数 Gradient Boosting 模型一�
 每一步迭代可以表示为：
 
 $$
-[
 \hat{y}_{\text{new}} = \hat{y}_{\text{old}} + f_t(x)
-]
 $$
 
 $$
-[
 \text{残差：} r_i^{(t)} = y_i - \hat{y}_i^{(t-1)} \approx -\frac{\partial \mathcal{L}(y_i, \hat{y}_i)}{\partial \hat{y}_i}
-]
 $$
 
 这个残差学习过程等价于在函数空间中做 **梯度下降**，因为减少残差的方向正是 loss 函数下降的方向。
@@ -112,9 +102,7 @@ XGBoost：
 - 每个分裂点的评价依据是：
 
 $$
-[
 \text{Gain} = \frac{1}{2} \left[ \frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{(G_L + G_R)^2}{H_L + H_R + \lambda} \right] - \gamma
-]
 $$
 
 这种做法确保了每一次分裂都在为 **全局的 loss 降低** 做出贡献，而不是只看局部变化。
@@ -128,11 +116,9 @@ XGBoost 中的每个叶子节点表示特征空间中的一个区域，对所有
 这个值不是平均值，而是通过如下解析公式计算得到的最优输出：
 
 $$
-[
 w_j^* = -\frac{G_j}{H_j + \lambda}, \quad 
 G_j = \sum_{i \in I_j} g_i, \quad 
 H_j = \sum_{i \in I_j} h_i
-]
 $$
 
 > 每个叶子节点就像一个参数化的 piecewise 常数函数，这种结构天然适合拟合复杂的 **非线性关系**。
