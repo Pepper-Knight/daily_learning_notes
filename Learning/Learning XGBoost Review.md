@@ -12,7 +12,6 @@ progress:
 XGBoost is a residual learning model, just like most gradient boosting models. The core idea is to iteratively learn the **residual** from the previous prediction, pushing the model output closer to the true label.
 
 At each step:
-
 $$
 \hat{y}_{\text{new}} = \hat{y}_{\text{old}} + f_t(x)
 $$
