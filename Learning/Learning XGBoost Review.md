@@ -2,7 +2,8 @@
 type:
   - learning
 aliases: 
-tags: 
+tags:
+  - machine_learning
 progress:
 ---
 # XGBoost: Residual Learning with Gradient & Hessian
@@ -14,10 +15,7 @@ XGBoost is a residual learning model, just like most gradient boosting models. T
 At each step:
 
 $$
-\hat{y}_{\text{new}} = \hat{y}_{\text{old}} + f_t(x)
-$$
-
-$$
+\hat{y}_{\text{new}} = \hat{y}_{\text{old}} + f_t(x),\quad 
 \text{Residual: } r_i^{(t)} = y_i - \hat{y}_i^{(t-1)} \approx -\frac{\partial \mathcal{L}(y_i, \hat{y}_i)}{\partial \hat{y}_i}
 $$
 
