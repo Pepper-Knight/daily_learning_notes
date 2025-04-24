@@ -192,7 +192,9 @@ $$
 使用大数定律，可以转换为期望的形式：
 
 $$
+[
 \hat{\theta}_{\mathrm{MLE}} = \arg\max_\theta \, \mathbb{E}_{x \sim p_{\text{data}}} \left[ \log p_\theta(x) \right]
+]
 $$
 
 等价于最小化负对数似然（NLL）：
